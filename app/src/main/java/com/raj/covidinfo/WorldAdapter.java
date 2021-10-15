@@ -41,6 +41,14 @@ public class WorldAdapter extends RecyclerView.Adapter<WorldAdapter.ViewHolder> 
                 .load(worldModel.getImageUrl())
                 .into(holder.flagIV);
 
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,DetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
 
 
     }
@@ -54,10 +62,12 @@ public class WorldAdapter extends RecyclerView.Adapter<WorldAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView flagIV;
         TextView countryTV;
+        private CardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             flagIV = itemView.findViewById(R.id.flagIV);
             countryTV = itemView.findViewById(R.id.countryTV);
+            cardView = itemView.findViewById(R.id.world_cardView);
         }
     }
 }
