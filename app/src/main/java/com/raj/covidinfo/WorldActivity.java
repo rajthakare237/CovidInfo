@@ -53,15 +53,15 @@ public class WorldActivity extends AppCompatActivity {
                                 for(int i=0;i<response.length();i++){
                                     JSONObject jsonObject = response.getJSONObject(i);
                                     String countryName = jsonObject.getString("country");
-//                                    String cases = jsonObject.getString("cases");
-//                                    String todayCases = jsonObject.getString("todayCases");
-//                                    String deaths = jsonObject.getString("deaths");
-//                                    String todayDeaths = jsonObject.getString("todayDeaths");
-//                                    String recovered = jsonObject.getString("recovered");
-//                                    String todayRecovered = jsonObject.getString("todayRecovered");
-//                                    String active = jsonObject.getString("active");
-//                                    String critical = jsonObject.getString("critical");
-//                                    String population = jsonObject.getString("population");
+                                    String cases = jsonObject.getString("cases");
+                                    String todayCases = jsonObject.getString("todayCases");
+                                    String deaths = jsonObject.getString("deaths");
+                                    String todayDeaths = jsonObject.getString("todayDeaths");
+                                    String recovered = jsonObject.getString("recovered");
+                                    String todayRecovered = jsonObject.getString("todayRecovered");
+                                    String active = jsonObject.getString("active");
+                                    String critical = jsonObject.getString("critical");
+                                    String population = jsonObject.getString("population");
 
                                     String countryInfo = jsonObject.getString("countryInfo");
                                     JSONObject jsonObject1 = new JSONObject(countryInfo);
@@ -69,10 +69,10 @@ public class WorldActivity extends AppCompatActivity {
                                     String flagUrl = jsonObject1.getString("flag");
 
 
-                                    worldModelArrayList.add(new WorldModel(flagUrl,countryName));
+                                    worldModelArrayList.add(new WorldModel(flagUrl,countryName,cases,todayCases,deaths,todayDeaths,recovered,todayRecovered,active,critical,population));
                                     worldArrayAdapter.notifyDataSetChanged();
 
-//                                    ,cases,todayCases,deaths,todayDeaths,recovered,todayRecovered,active,critical,population
+
 
                                 }
 

@@ -1,14 +1,11 @@
 package com.raj.covidinfo;
 
-public class WorldModel {
+public class IndiaModel {
 
-    String imageUrl;
-    String countryName;
-    String cases,todayCases,deaths,todayDeaths,recovered,todayRecovered,active,critical,population;
+    String stateName,cases,todayCases,deaths,todayDeaths,recovered,todayRecovered,active;
 
-    public WorldModel(String imageUrl, String countryName, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active, String critical, String population) {
-        this.imageUrl = imageUrl;
-        this.countryName = countryName;
+    public IndiaModel(String stateName, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active) {
+        this.stateName = stateName;
         this.cases = cases;
         this.todayCases = todayCases;
         this.deaths = deaths;
@@ -16,24 +13,14 @@ public class WorldModel {
         this.recovered = recovered;
         this.todayRecovered = todayRecovered;
         this.active = active;
-        this.critical = critical;
-        this.population = population;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getStateName() {
+        return stateName;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
     public String getCases() {
@@ -90,21 +77,5 @@ public class WorldModel {
 
     public void setActive(String active) {
         this.active = active;
-    }
-
-    public String getCritical() {
-        return critical;
-    }
-
-    public void setCritical(String critical) {
-        this.critical = critical;
-    }
-
-    public String getPopulation() {
-        return population;
-    }
-
-    public void setPopulation(String population) {
-        this.population = population;
     }
 }

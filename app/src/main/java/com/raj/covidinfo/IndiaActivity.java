@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class IndiaActivity extends AppCompatActivity {
 
     BottomNavigationView navigationView;
-    ArrayList<String> stateArraylist;
+    ArrayList<IndiaModel> stateArraylist;
     IndiaAdapter indiaAdapter;
     RecyclerView indiaRV;
 
@@ -55,7 +55,14 @@ public class IndiaActivity extends AppCompatActivity {
                                 for(int i=0;i<jsonArray.length();i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String stateName = jsonObject.getString("state");
-                                    stateArraylist.add(stateName);
+                                    String cases = jsonObject.getString("cases");
+                                    String todayCases = jsonObject.getString("todayCases");
+                                    String deaths = jsonObject.getString("deaths");
+                                    String todayDeaths = jsonObject.getString("todayDeaths");
+                                    String recovered = jsonObject.getString("recovered");
+                                    String todayRecovered = jsonObject.getString("todayRecovered");
+                                    String active = jsonObject.getString("active");
+                                    stateArraylist.add(new IndiaModel(stateName,cases,todayCases,deaths,todayDeaths,recovered,todayRecovered,active));
                                     indiaAdapter.notifyDataSetChanged();
 
                                 }
@@ -86,7 +93,6 @@ public class IndiaActivity extends AppCompatActivity {
         stateArraylist = new ArrayList<>();
         indiaRV = findViewById(R.id.indiaRV);
         indiaAdapter = new IndiaAdapter(stateArraylist,this);
-
         indiaRV.setAdapter(indiaAdapter);
 
 

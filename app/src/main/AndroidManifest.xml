@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CovidInfo">
         <activity
+            android:name=".StateDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailActivity"
             android:exported="false" />
         <activity
@@ -25,8 +28,7 @@
         <activity
             android:name=".WorldActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
-
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

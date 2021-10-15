@@ -4,70 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF50"
-    tools:context=".MainActivity">
+    android:background="@color/teal_200"
+    tools:context=".StateDetailActivity">
 
-
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/idToolbar"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/backBtnState"
+        android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="#FF9800">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center"
-                android:padding="4dp"
-                android:text="COVIDINFO"
-                android:fontFamily="@font/reloaded_bold"
-                android:textAlignment="center"
-                android:textColor="@color/purple_500"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/teal_200"
+        android:backgroundTint="@color/teal_200"
+        android:scaleType="fitCenter"
+        android:src="@drawable/backarrow" />
 
 
-    </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/staySafeIV"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_below="@+id/idToolbar"
-        android:layout_marginTop="3dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:src="@drawable/stay_safe" />
 
     <TextView
-        android:id="@+id/worldHeadTV"
+        android:id="@+id/stateNameHeadTVSt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/staySafeIV"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/afton_james"
-        android:text="World Data"
-        android:textColor="@color/white"
-        android:textSize="35sp"
+        android:layout_gravity="center"
+        android:layout_below="@id/backBtnState"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/country_name_back"
+        android:padding="7dp"
+        android:text="Maharashtra"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         android:textStyle="bold" />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/worldCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/worldHeadTV"
+        android:layout_below="@+id/stateNameHeadTVSt"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         app:cardElevation="20dp"
         app:cardCornerRadius="10dp"
         android:layout_marginRight="15dp">
@@ -100,7 +76,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/casesTV"
+                    android:id="@+id/casesTVState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -137,7 +113,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/todayCasesTV"
+                    android:id="@+id/todayCasesTVState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -174,7 +150,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/deathsTV"
+                    android:id="@+id/deathsTVState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -211,7 +187,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/todayDeathsTV"
+                    android:id="@+id/todayDeathsTVState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -248,7 +224,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/recoveredTV"
+                    android:id="@+id/recoveredTVState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -286,7 +262,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/todayRecoveredTV"
+                    android:id="@+id/todayRecoveredTVState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -325,7 +301,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activeTV"
+                    android:id="@+id/activeTVState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -338,66 +314,11 @@
 
 
             </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="left"
-                    android:paddingLeft="5dp"
-                    android:text="Critical"
-                    android:textColor="#9C27B0"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/criticalTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="right"
-                    android:paddingRight="5dp"
-                    android:text="N/A"
-                    android:textColor="#FF9800"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
-
-
-
 
         </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
-
-
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#9C27B0"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/navigation_menu" />
-
-
 
 
 </RelativeLayout>

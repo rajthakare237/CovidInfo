@@ -45,6 +45,17 @@ public class WorldAdapter extends RecyclerView.Adapter<WorldAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,DetailActivity.class);
+                intent.putExtra("flagUrl",worldModel.getImageUrl());
+                intent.putExtra("countryName",worldModel.getCountryName());
+                intent.putExtra("cases",worldModel.getCases());
+                intent.putExtra("todayCases",worldModel.getTodayCases());
+                intent.putExtra("deaths",worldModel.getDeaths());
+                intent.putExtra("todayDeaths",worldModel.getTodayDeaths());
+                intent.putExtra("recovered",worldModel.getRecovered());
+                intent.putExtra("todayRecovered",worldModel.getTodayRecovered());
+                intent.putExtra("active",worldModel.getActive());
+                intent.putExtra("critical",worldModel.getCritical());
+                intent.putExtra("population",worldModel.getPopulation());
                 context.startActivity(intent);
             }
         });

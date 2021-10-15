@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class IndiaAdapter extends RecyclerView.Adapter<IndiaAdapter.ViewHolder> {
 
-    ArrayList<String> stateArraylist;
+    ArrayList<IndiaModel> stateArraylist;
     private Context context;
 
-    public IndiaAdapter(ArrayList<String> stateArraylist, Context context) {
+    public IndiaAdapter(ArrayList<IndiaModel> stateArraylist, Context context) {
         this.stateArraylist = stateArraylist;
         this.context = context;
     }
@@ -35,12 +35,22 @@ public class IndiaAdapter extends RecyclerView.Adapter<IndiaAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull IndiaAdapter.ViewHolder holder, int position) {
 
-        holder.stateNameTV.setText(stateArraylist.get(position));
+        IndiaModel indiaModel = stateArraylist.get(position);
+
+        holder.stateNameTV.setText(indiaModel.getStateName());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,DetailActivity.class);
+                Intent intent = new Intent(context,StateDetailActivity.class);
+                intent.putExtra("stateName",indiaModel.getStateName());
+                intent.putExtra("cases",indiaModel.getCases());
+                intent.putExtra("todayCases",indiaModel.getTodayCases());
+                intent.putExtra("deaths",indiaModel.getDeaths());
+                intent.putExtra("todayDeaths",indiaModel.getTodayDeaths());
+                intent.putExtra("recovered",indiaModel.getRecovered());
+                intent.putExtra("todayRecovered",indiaModel.getTodayRecovered());
+                intent.putExtra("active",indiaModel.getActive());
                 context.startActivity(intent);
             }
         });
