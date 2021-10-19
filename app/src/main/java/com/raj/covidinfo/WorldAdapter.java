@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,10 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
 
-public class WorldAdapter extends RecyclerView.Adapter<WorldAdapter.ViewHolder> {
+public class WorldAdapter extends RecyclerView.Adapter<WorldAdapter.ViewHolder>{
     private ArrayList<WorldModel> arrayList;
     private Context context;
+
+
 
     public WorldAdapter(ArrayList<WorldModel> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -64,10 +71,17 @@ public class WorldAdapter extends RecyclerView.Adapter<WorldAdapter.ViewHolder> 
 
     }
 
+    public void filterList(ArrayList<WorldModel> filteredList){
+        arrayList = filteredList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return arrayList.size();
     }
+
+
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -82,4 +96,5 @@ public class WorldAdapter extends RecyclerView.Adapter<WorldAdapter.ViewHolder> 
         }
     }
 }
+
 

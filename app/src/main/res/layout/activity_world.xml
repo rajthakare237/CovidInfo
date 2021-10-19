@@ -20,7 +20,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/searchEditText"
+            android:id="@+id/searchEditTextWorld"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Search country here"
@@ -40,14 +40,11 @@
             android:padding="4dp"/>
 
     </LinearLayout>
-
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/worldRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/searchLL"
+        android:layout_below="@+id/searchLL"
         android:orientation="vertical"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class IndiaAdapter extends RecyclerView.Adapter<IndiaAdapter.ViewHolder> {
 
-    ArrayList<IndiaModel> stateArraylist;
+    private ArrayList<IndiaModel> stateArraylist;
     private Context context;
 
     public IndiaAdapter(ArrayList<IndiaModel> stateArraylist, Context context) {
@@ -55,6 +55,11 @@ public class IndiaAdapter extends RecyclerView.Adapter<IndiaAdapter.ViewHolder> 
             }
         });
 
+    }
+
+    public void filterList(ArrayList<IndiaModel> filteredList){
+        stateArraylist = filteredList;
+        notifyDataSetChanged();
     }
 
     @Override

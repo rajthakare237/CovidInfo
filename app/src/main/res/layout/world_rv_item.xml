@@ -23,7 +23,7 @@
             android:id="@+id/flagIV"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/af"
+            android:src="@color/white"
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:padding="5dp"/>

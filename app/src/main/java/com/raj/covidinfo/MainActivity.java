@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView navigationView;
 
+
     TextView casesTV, todayCasesTV, deathsTV, todayDeathsTV, recoveredTV, todayRecoveredTV, activeTV, criticalTV;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                                 String active = response.getString("active");
                                 String critical = response.getString("critical");
 
+
+
+
                                 casesTV.setText(cases);
                                 todayCasesTV.setText(todayCases);
                                 deathsTV.setText(deaths);
@@ -71,10 +75,6 @@ public class MainActivity extends AppCompatActivity {
                                 activeTV.setText(active);
                                 criticalTV.setText(critical);
 
-                                Log.i("info", cases);
-                                Log.i("info", todayCases);
-                                Log.i("info", deaths);
-                                Log.i("info", todayDeaths);
 
 
                             } catch (JSONException e) {
@@ -142,10 +142,6 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
 
-                    case R.id.graph:
-                        startActivity(new Intent(getApplicationContext(), GraphActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
                 }
                 return false;
             }

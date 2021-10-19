@@ -7,8 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,9 +33,10 @@ import java.util.ArrayList;
 public class IndiaActivity extends AppCompatActivity {
 
     BottomNavigationView navigationView;
-    ArrayList<IndiaModel> stateArraylist;
+    private ArrayList<IndiaModel> stateArraylist;
     IndiaAdapter indiaAdapter;
     RecyclerView indiaRV;
+    EditText editText;
 
 
     public class DownloadTaskIndia extends AsyncTask<String, Void, String> {
@@ -94,6 +99,27 @@ public class IndiaActivity extends AppCompatActivity {
         indiaRV = findViewById(R.id.indiaRV);
         indiaAdapter = new IndiaAdapter(stateArraylist,this);
         indiaRV.setAdapter(indiaAdapter);
+        editText = findViewById(R.id.searchEditTextIndia);
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+              filterStates(s.toString());
+            }
+
+
+        });
+
 
 
         try {
@@ -127,13 +153,28 @@ public class IndiaActivity extends AppCompatActivity {
                     case R.id.india:
                         return true;
 
-                    case R.id.graph:
-                        startActivity(new Intent(getApplicationContext(),GraphActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
                 }
                 return false;
             }
         });
+    }
+
+    private void filterStates(String state) {
+            ArrayList<IndiaModel> filteredList = new ArrayList<>();
+            for (IndiaModel item : stateArraylist) {
+                if (item.getStateName().toLowerCase().contains(state.toLowerCase())) {
+                    filteredList.add(item);
+                }
+                if(!filteredList.isEmpty()){
+                    indiaAdapter.filterList(filteredList);
+                }
+
+
+
+            }
+                if (filteredList.isEmpty()) {
+                    Toast.makeText(this, "No State Found ", Toast.LENGTH_SHORT).show();
+
+                }
     }
 }

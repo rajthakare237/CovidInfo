@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class WorldActivity extends AppCompatActivity {
 
@@ -35,9 +39,7 @@ public class WorldActivity extends AppCompatActivity {
     EditText searchEditText;
 
 
-
     public class DownloadTaskWorld extends AsyncTask<String, Void, String> {
-
 
 
         @Override
@@ -50,7 +52,7 @@ public class WorldActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONArray response) {
                             try {
-                                for(int i=0;i<response.length();i++){
+                                for (int i = 0; i < response.length(); i++) {
                                     JSONObject jsonObject = response.getJSONObject(i);
                                     String countryName = jsonObject.getString("country");
                                     String cases = jsonObject.getString("cases");
@@ -69,9 +71,8 @@ public class WorldActivity extends AppCompatActivity {
                                     String flagUrl = jsonObject1.getString("flag");
 
 
-                                    worldModelArrayList.add(new WorldModel(flagUrl,countryName,cases,todayCases,deaths,todayDeaths,recovered,todayRecovered,active,critical,population));
+                                    worldModelArrayList.add(new WorldModel(flagUrl, countryName, cases, todayCases, deaths, todayDeaths, recovered, todayRecovered, active, critical, population));
                                     worldArrayAdapter.notifyDataSetChanged();
-
 
 
                                 }
@@ -102,8 +103,27 @@ public class WorldActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.bottom_navigation);
         worldModelArrayList = new ArrayList<>();
         worldRV = findViewById(R.id.worldRV);
-        worldArrayAdapter = new WorldAdapter(worldModelArrayList,this);
+        worldArrayAdapter = new WorldAdapter(worldModelArrayList, this);
         worldRV.setAdapter(worldArrayAdapter);
+        searchEditText = findViewById(R.id.searchEditTextWorld);
+
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filterCountries(s.toString());
+
+            }
+        });
 
 
         try {
@@ -113,6 +133,7 @@ public class WorldActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         navigationView.setSelectedItemId(R.id.world);
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -120,11 +141,10 @@ public class WorldActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
 
-
                 switch (item.getItemId()) {
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.world:
@@ -132,12 +152,8 @@ public class WorldActivity extends AppCompatActivity {
 
                     case R.id.india:
 
-                        startActivity(new Intent(getApplicationContext(),IndiaActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.graph:
-                        startActivity(new Intent(getApplicationContext(),GraphActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), IndiaActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
 
@@ -146,4 +162,25 @@ public class WorldActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void filterCountries(String country) {
+        ArrayList<WorldModel> filteredList = new ArrayList<>();
+        for (WorldModel item : worldModelArrayList) {
+            if (item.getCountryName().toLowerCase().contains(country.toLowerCase())) {
+                filteredList.add(item);
+            }
+            if (!filteredList.isEmpty()) {
+                worldArrayAdapter.filterList(filteredList);
+            }
+
+
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this, "No Country Found ", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
 }
+

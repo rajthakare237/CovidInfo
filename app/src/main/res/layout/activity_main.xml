@@ -42,8 +42,8 @@
         android:id="@+id/staySafeIV"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_below="@+id/idToolbar"
         android:layout_marginTop="3dp"
+        android:layout_below="@id/idToolbar"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:src="@drawable/stay_safe" />
